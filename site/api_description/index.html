@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>API description - Python Eledio library</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "API description";
+    var mkdocs_page_input_path = "api_description.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Python Eledio library</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">API description</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#necessary-parts">Necessary parts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#device-description-in-json-file">Device description in json file</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#example-of-json-file-can-be-named-as-configjson">Example of json file, can be named as  config.json</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#import-of-library-components">Import of library components</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#load-of-json-file">Load of json file</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#basic-example-of-device-registration">Basic example of device registration</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#readout-values-from-the-peripherals-sensors-to-linux">Readout values from the peripherals - sensors, to linux</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#put-new-values-to-the-peripherals-actuators-connected-to-the-hardware">Put new values to the peripherals - actuators, connected to the hardware</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../application_example/">Application example</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../contact/">Contact</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Python Eledio library</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>API description</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="description-of-api-for-python-eledio-library">Description of API for python-eledio library</h1>
+<p>This description allow to you easly write your own python script.</p>
+<p>This script you can use for control of your Eledio devices. This sript you can upload to your <a href="https://www.eledio.com/en/hardware/"><strong>Eledio Gateway</strong></a> and control your gateways and your <a href="https://www.eledio.com/en/hardware/"><strong>Eledio Extendres</strong></a> which you want control from gateway.</p>
+<p>This library is preinstalled in your <a href="https://www.eledio.com/en/hardware/">Eledio Gateway</a>.  You can start programming, after unpacking.</p>
+<h2 id="necessary-parts">Necessary parts</h2>
+<p>Each major drive script in python for your application must be made up with some necessary parts.</p>
+<ul>
+<li>
+<p><a href="#device-description-in-json-file">device description in <em>json</em> file</a></p>
+</li>
+<li>
+<p><a href="#import-of-library-components">import of library components</a></p>
+</li>
+<li>
+<p><a href="#load-of-json-file">load of <em>json</em> file</a></p>
+</li>
+</ul>
+<h3 id="device-description-in-json-file">Device description in <em>json</em> file</h3>
+<ul>
+<li>this file is for hardware abstraction layer to linux</li>
+<li>you are able to used your own names of identifiers, eg. you can rename <em>Temperature</em> to <em>OutsideTemperature</em></li>
+<li>every name of identifiers must consist only with English alphabet characters, without spaces and other punctuation</li>
+<li>if you need some reaclculation of readout values, you can use prepared values <strong>a</strong> and <strong>b</strong>, with are parts of equation <strong>y=a*x+b</strong>, where <strong>x</strong> is readout value from device, <strong>y</strong> is value which you obtain in python script, eg. if you need temeperature in degree of fahrenheit, you can place <strong>a=1.8</strong> and <strong>b=32</strong> (which corresponds of equation <code>T[°F] = T[°C]*1.8 + 32</code>)</li>
+</ul>
+<h4 id="example-of-json-file-can-be-named-as-configjson">Example of <em>json</em> file, can be named as  config.json</h4>
+<pre><code>{
+  &quot;devices&quot;: {
+    &quot;unit-40&quot;: {
+      &quot;bus&quot;: &quot;i2c&quot;,
+      &quot;address&quot;: 40,
+      &quot;datacrc&quot;: 9718,
+      &quot;compilermagic&quot;: 4006394777
+    }
+  },
+  &quot;identifiers&quot;: {
+    &quot;gatewayHWEvent&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 0,
+      &quot;entrysize&quot;: 2,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 1,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;u16&quot;,
+      &quot;srq&quot;: 0
+    },
+    &quot;gatewayHWState&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 2,
+      &quot;entrysize&quot;: 2,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 1,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;u16&quot;
+    },
+    &quot;RE1Voltage&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 4,
+      &quot;entrysize&quot;: 2,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 0.01,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;s16&quot;
+    },
+    &quot;Temperature&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 6,
+      &quot;entrysize&quot;: 2,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 0.01,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;s16&quot;
+    },
+    &quot;gatewayHWAction&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;adp&quot;,
+      &quot;offset&quot;: 0,
+      &quot;entrysize&quot;: 2
+    },
+    &quot;RE1&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;adp&quot;,
+      &quot;offset&quot;: 2,
+      &quot;entrysize&quot;: 1
+    },
+    &quot;RE3&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;adp&quot;,
+      &quot;offset&quot;: 3,
+      &quot;entrysize&quot;: 1
+    }
+  }
+}
+</code></pre>
+<h3 id="import-of-library-components">Import of library components</h3>
+<ul>
+<li>consist with few of import statements, which are necessary for correct function</li>
+</ul>
+<pre><code>import json # necessary for description json file; required
+
+from eledio import Eledio   # basic functionality; required
+from eledio.component.mpu.i2c import SMBus  # communication interface with linux; required
+from eledio.device.pcu import PcuFactory    # access to variables and components of base board, e.g: relay outputs, digital inputs, ...; required
+from eledio.device.mpu import MpuFactory # access to variables and components of linux board, e.g.: wifi signal rssi, status LED color, ...
+from eledio.device.srq import Srq   # interrupt system for quick access to variables which need intermediate handle, e.g.: RF433 receiver
+
+</code></pre>
+<h3 id="load-of-json-file">Load of <em>json</em> file</h3>
+<ul>
+<li>this part is required before fist try of attempt to variables with names form config <em>json</em> part</li>
+</ul>
+<h4 id="basic-example-of-device-registration">Basic example of device registration</h4>
+<pre><code>eledio = Eledio()
+eledio.register_device_factory(&quot;i2c&quot;, PcuFactory(SMBus(0)))
+
+# repeat for every configuration file
+with open('config.json') as f:
+    eledio.append_config(json.load(f))
+</code></pre>
+<h2 id="readout-values-from-the-peripherals-sensors-to-linux">Readout values from the peripherals - sensors, to linux</h2>
+<p>Everytime, you want to read all of variables, e.g.: temperatures, digital input states, sensors values, ... you must to call <code>eledio.load_inputs()</code></p>
+<p>After this calling, you can access to variables by their symbloc names in dict access.
+For example:</p>
+<pre><code>eledio.load_inputs()
+
+temperature = eledio[&quot;Temperature&quot;] # this statement put value of temperature after processing of linear equation (a and b coeficients) to the variable temperature
+
+voltage = eledio[&quot;RE1Voltage&quot;] # this statement put value of RMS voltage on relay 1 to variable voltage
+</code></pre>
+<h2 id="put-new-values-to-the-peripherals-actuators-connected-to-the-hardware">Put new values to the peripherals - actuators, connected to the hardware</h2>
+<p>For relay, digital outputs you are able to set states True/False. Used logic of every component is written in component description.</p>
+<pre><code>eledio[&quot;RE1&quot;] = True # switch on relay 1
+eledio[&quot;RE3&quot;] = False # switch off relay 3
+
+eledio.store_outputs()
+</code></pre>
+<p>After setting values for all of dict <code>eledio</code> parts, which you want to set, you need to call command <code>eledio.store_outputs()</code>, which send that values to real hardware.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../application_example/" class="btn btn-neutral float-right" title="Application example">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Eledio © 2019</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../application_example/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

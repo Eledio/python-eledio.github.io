@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Application example - Python Eledio library</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Application example";
+    var mkdocs_page_input_path = "application_example.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/python.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Python Eledio library</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../api_description/">API description</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Application example</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#state-led-buzzer-and-watchdog-control">State LED, buzzer and watchdog control</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-json-file">Configuration json file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#wifi-rssi-linux-cpu-utilization">WiFi RSSI, linux CPU utilization</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_1">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#srqirq-handler">SRQ/IRQ handler</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-json-file_1">Configuration json file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_2">Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#error-handler">Error handler</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#usage_3">Usage</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../contact/">Contact</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Python Eledio library</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Application example</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="example-of-usages">Example of usages</h1>
+<p>There you can find some examples, how to use python-eledio library in your Eledio devices.</p>
+<h2 id="state-led-buzzer-and-watchdog-control">State LED, buzzer and watchdog control</h2>
+<h3 id="configuration-json-file">Configuration <em>json</em> file</h3>
+<p>File name: <em>mpu-config.json</em></p>
+<pre><code>{
+  &quot;devices&quot;: {
+    &quot;mpu-dev&quot;: {
+      &quot;bus&quot;: &quot;mpu&quot;
+    }
+  },
+  &quot;identifiers&quot;: {
+    &quot;mpuWifiRssi&quot;: {
+      &quot;unit&quot;: &quot;mpu-dev&quot;,
+      &quot;parameter&quot;: &quot;wifi-rssi&quot;
+    },
+    &quot;mpuInternalTemperature&quot;: {
+      &quot;unit&quot;: &quot;mpu-dev&quot;,
+      &quot;parameter&quot;: &quot;temperature&quot;
+    },
+    &quot;mpuCpuPercent&quot;: {
+      &quot;unit&quot;: &quot;mpu-dev&quot;,
+      &quot;parameter&quot;: &quot;cpu-percent&quot;
+    },
+    &quot;mpuLed&quot;: {
+      &quot;unit&quot;: &quot;mpu-dev&quot;,
+      &quot;parameter&quot;: &quot;led&quot;
+    },
+    &quot;mpuBeeper&quot;: {
+      &quot;unit&quot;: &quot;mpu-dev&quot;,
+      &quot;parameter&quot;: &quot;beeper&quot;
+    },
+    &quot;mpuWatchdog&quot;: {
+      &quot;unit&quot;: &quot;mpu-dev&quot;,
+      &quot;parameter&quot;: &quot;watchdog&quot;
+    }
+  }
+}
+</code></pre>
+<h3 id="usage">Usage</h3>
+<pre><code>import json
+
+from eledio import Eledio
+from eledio.component.mpu.i2c import SMBus
+from eledio.device.mpu import MpuFactory
+
+if __name__ == &quot;__main__&quot;:
+    eledio = Eledio()
+    eledio.register_device_factory(&quot;mpu&quot;, MpuFactory())
+
+    with open('mpu-config.json') as f:
+        eledio.append_config(json.load(f))
+
+    eledio[&quot;mpuLed&quot;] = (0x40, 0x00, 0x00) # set color of state LED in (R, G, B) format
+    eledio[&quot;mpuBeeper&quot;] = (1500, 10)    # after calling store_outputs() switch on beeper on frequency 1500 Hz for 1s (first parameter is frequency in Hz, second parameter is duration in hundred ms)
+
+    '''
+    Warning, next statement is dangerous, it couse restart of linux machine (watchdog).
+    This function is good to use when you have your development complete, and you know, that you communicate with components and devices lower then every x second.
+    '''
+    eledio[&quot;mpuWatchdog&quot;] = 120 # after calling store_outputs() this statement couse reset of linux every 120 seconds. If there is any communication with devicese, timeout is restarted.
+
+    eledio.store_outputs()
+</code></pre>
+<h2 id="wifi-rssi-linux-cpu-utilization">WiFi RSSI, linux CPU utilization</h2>
+<p>Use <a href="#configuration-json-file">same <em>json</em></a> file as in previous example.</p>
+<h3 id="usage_1">Usage</h3>
+<pre><code>import json
+
+from eledio import Eledio
+from eledio.component.mpu.i2c import SMBus
+from eledio.device.mpu import MpuFactory
+
+if __name__ == &quot;__main__&quot;:
+    eledio = Eledio()
+    eledio.register_device_factory(&quot;mpu&quot;, MpuFactory())
+
+    with open('mpu-config.json') as f:
+        eledio.append_config(json.load(f))
+
+    eledio.load_inputs()
+
+    rssi = eledio[&quot;mpuWifiRssi&quot;] # place to variable rssi, WiFi signal RSSI
+    utilization = eledio[&quot;mpuCpuPercent&quot;] # place to variable utilitation, linux CPU utilization
+</code></pre>
+<h2 id="srqirq-handler">SRQ/IRQ handler</h2>
+<p>If you want to used quick access to variables like received code from RF433 control, you can use SRQ handler.</p>
+<p>Inside SRQ handler, in this example function <code>handle_srq</code>, you received dictionary of eledio identifiers and their new value after SRQ.</p>
+<h3 id="configuration-json-file_1">Configuration <em>json</em> file</h3>
+<p>File name: <em>map.json</em></p>
+<pre><code>{
+  &quot;devices&quot;: {
+    &quot;unit-40&quot;: {
+      &quot;bus&quot;: &quot;i2c&quot;,
+      &quot;address&quot;: 40,
+      &quot;datacrc&quot;: 43200,
+      &quot;compilermagic&quot;: 4006394777
+    }
+  },
+  &quot;identifiers&quot;: {
+    &quot;gatewayHWEvent&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 0,
+      &quot;entrysize&quot;: 2,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 1,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;u16&quot;,
+      &quot;srq&quot;: 0
+    },
+    &quot;gatewayHWState&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 2,
+      &quot;entrysize&quot;: 2,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 1,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;u16&quot;
+    },
+    &quot;rf433&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;sdp&quot;,
+      &quot;offset&quot;: 4,
+      &quot;entrysize&quot;: 4,
+      &quot;depth&quot;: 0,
+      &quot;type&quot;: 1,
+      &quot;prescaler&quot;: 0,
+      &quot;a&quot;: 1,
+      &quot;b&quot;: 0,
+      &quot;datatype&quot;: &quot;u32&quot;,
+      &quot;srq&quot;: 1
+    },
+    &quot;gatewayHWAction&quot;: {
+      &quot;unit&quot;: &quot;unit-40&quot;,
+      &quot;partition&quot;: &quot;adp&quot;,
+      &quot;offset&quot;: 0,
+      &quot;entrysize&quot;: 2
+    }
+  }
+}
+</code></pre>
+<h3 id="usage_2">Usage</h3>
+<pre><code>import json
+
+from eledio import Eledio
+from eledio.component.mpu.i2c import SMBus
+from eledio.device.mpu import MpuFactory
+
+def handle_srq(identifiers):
+    &quot;&quot;&quot;
+    User handling of SRQ (called in context of eledio.wait_events)
+    :param identifiers: dictionary of eledio identifiers and their new value after SRQ
+    :return:
+    &quot;&quot;&quot;
+    print(&quot;Service requests!&quot;, identifiers)
+
+if __name__ == &quot;__main__&quot;:
+    eledio = Eledio()
+    eledio.register_device_factory(&quot;i2c&quot;, PcuFactory(SMBus(0)))
+    eledio.register_srq(Srq(), handle_srq())
+
+    # repeat for every configuration file
+    with open('map.json') as f:
+        eledio.append_config(json.load(f))
+
+ while True:
+        # load state of inputs and outputs
+        eledio.load_inputs()
+
+        # do something else or wait some time
+        eledio.wait_events(1.0)
+</code></pre>
+<h2 id="error-handler">Error handler</h2>
+<p>In runtime and while you develop your solution, there could rise some errors. You can catch them by definition of <em>error handler</em>.</p>
+<h3 id="usage_3">Usage</h3>
+<p>In this example <em>error handler</em> is represented by function <code>handler_error</code>.</p>
+<pre><code>import json
+
+from eledio import Eledio
+from eledio.component.mpu.i2c import SMBus
+from eledio.device.pcu import PcuFactory
+from eledio.device.mpu import MpuFactory
+from eledio.device.srq import Srq
+
+
+def handle_srq(identifiers):
+    &quot;&quot;&quot;
+    User handling of SRQ (called in context of eledio.wait_events)
+    :param identifiers: dictionary of eledio identifiers and their new value after SRQ
+    :return:
+    &quot;&quot;&quot;
+    print(&quot;Service requests!&quot;, identifiers)
+
+
+def handle_error(src, ex):
+    &quot;&quot;&quot;
+    Handle error inside eledio library
+    :param src:
+    :param ex:
+    :return:
+    &quot;&quot;&quot;
+    print(src, ex)
+
+
+if __name__ == &quot;__main__&quot;:
+    eledio = Eledio()
+    eledio.register_device_factory(&quot;i2c&quot;, PcuFactory(SMBus(0)))
+    eledio.register_device_factory(&quot;mpu&quot;, MpuFactory())
+    eledio.register_srq(Srq(), handle_srq)
+    eledio.error_handler = handle_error
+
+    # repeat for every configuration file
+    with open('config.json') as f:
+        eledio.append_config(json.load(f))
+
+    with open('mpu-config.json') as f:
+        eledio.append_config(json.load(f))
+
+    while True:
+        # load state of inputs and outputs
+        eledio.load_inputs()
+
+        # manipulate with inputs and outputs by identifier
+        # e.g.
+        #   print(eledio[&quot;test1&quot;])
+        #   eledio[&quot;test2&quot;] = True
+
+        # apply final value to hardware
+        eledio.store_outputs()
+
+        # do something else or wait some time
+        eledio.wait_events(1.0)
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contact/" class="btn btn-neutral float-right" title="Contact">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../api_description/" class="btn btn-neutral" title="API description"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Eledio © 2019</p>
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../api_description/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
